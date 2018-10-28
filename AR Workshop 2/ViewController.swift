@@ -31,22 +31,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
 		// Create scene
-		let scene = SCNScene()
+//		let scene = SCNScene()
 
-		// Create our Thicc Cube
-//		let path = UIBezierPath(rect: CGRect(x: 0.5, y: 0.5, width: 0.5, height: 0.5))
-		let shape = SCNBox(width: 0.50, height: 0.50, length: 0.50, chamferRadius: 0)
+//		sceneView.scene = scene
 
-		// Throw it on a node
-		let newNode = SCNNode(geometry: shape)
-		newNode.position = SCNVector3(0, 0, -2.5)
+		var transformMatrix = matrix_identity_float4x4
 
-		// Add node to scene
-		scene.rootNode.addChildNode(newNode)
+		transformMatrix.columns.3.x = 0
+		transformMatrix.columns.3.y = 0
+		transformMatrix.columns.3.z = -0.5
 
-		sceneView.scene = scene
+		let anchor = ARAnchor(transform: transformMatrix)
 
-
+		sceneView.session.add(anchor: anchor)
 
 
 
@@ -74,12 +71,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
 
+		// Create our Thicc Cube
+		//		let path = UIBezierPath(rect: CGRect(x: 0.5, y: 0.5, width: 0.5, height: 0.5))
+		let shape = SCNBox(width: 0.50, height: 0.50, length: 0.50, chamferRadius: 0)
 
+		// Throw it on a node
+		let newNode = SCNNode(geometry: shape)
 
-        return node
-    } */
+		return newNode
+    }
 
 	func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
 
