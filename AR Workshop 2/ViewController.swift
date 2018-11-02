@@ -22,19 +22,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-//        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-
-        // Set the scene to the view
-//        sceneView.scene = scene
 
 
-		// Create scene
-//		let scene = SCNScene()
-
-//		sceneView.scene = scene
-
+		// Place our cube
 		var transformMatrix = matrix_identity_float4x4
 
 		transformMatrix.columns.3.x = 0
@@ -66,15 +56,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
 
-    // MARK: - ARSCNViewDelegate
 
+    // MARK: - ARSCNViewDelegate
 
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
 
 		// Create our Thicc Cube
-		//		let path = UIBezierPath(rect: CGRect(x: 0.5, y: 0.5, width: 0.5, height: 0.5))
-		let shape = SCNBox(width: 0.50, height: 0.50, length: 0.50, chamferRadius: 0)
+		let shape = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+
+		let material = SCNMaterial()
+		material.diffuse.contents = UIColor.purple
+
 
 		// Throw it on a node
 		let newNode = SCNNode(geometry: shape)
@@ -82,11 +75,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		return newNode
     }
 
-	func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-
-
-	}
-    
+	// MARK: - Error checking
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
