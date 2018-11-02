@@ -23,7 +23,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
 
-
 		// Place our cube
 		var transformMatrix = matrix_identity_float4x4
 
@@ -34,9 +33,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		let anchor = ARAnchor(transform: transformMatrix)
 
 		sceneView.session.add(anchor: anchor)
-
-
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +63,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 		let material = SCNMaterial()
         material.diffuse.contents = UIImage(named: "dog.jpg")
-
+        
+        shape.materials = [material]
 
 		// Throw it on a node
 		let newNode = SCNNode(geometry: shape)
