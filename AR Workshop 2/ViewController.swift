@@ -62,7 +62,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 		let shape = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
 
 		let material = SCNMaterial()
-        material.diffuse.contents = UIImage(named: "art.scnassets/dog.jpg")
+		material.isDoubleSided = true
+		material.diffuse.contents = UIImage(named: "art.scnassets/border.png")
+		material.transparencyMode = .aOne
         
         shape.materials = [material]
 
